@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center_vertical|center_horizontal"
+android:paddingLeft="16dp"
+android:paddingRight="16dp"
+android:orientation="vertical"
+android:focusableInTouchMode="true">
+
+
+
+    <EditText
+        android:id="@+id/symptom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundededittext"
+        android:hint="@string/Symptom"
+        android:inputType="text"
+        android:textColor="#CCCCCC"
+        android:autofillHints="" />
+
+<Button
+    android:id="@+id/graph_query"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/buttonback"
+    android:text="Search"
+    android:onClick="on_click_graph_query"
+    />
+
+<ListView
+    android:id="@+id/list_view"
+    style="@style/Widget.AppCompat.ListView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></ListView>
+</LinearLayout>
