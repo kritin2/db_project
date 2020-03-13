@@ -1,59 +1,31 @@
 package com.example.db_project;
-import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.Map;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 public class MainActivity extends AppCompatActivity {
-//    EditText disease_name;
-//    EditText treatment_name;
+
     SharedPreferences sharedPref;
-//    String disease1;
     String symptom1;
-//    String treatment1;
 public class Searcher extends AsyncTask<Void, Void, Void> {
     String[] diseases = new String[0];
     String name;
@@ -121,6 +93,9 @@ public class Searcher extends AsyncTask<Void, Void, Void> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) listView.getItemAtPosition(position);
+                Intent myIntent = new Intent(MainActivity.this, UserActivity.class);
+                myIntent.putExtra("disease", item); //Optional parameters
+                startActivity(myIntent);
                 //selected username is item
 
             }
@@ -133,7 +108,7 @@ public class Searcher extends AsyncTask<Void, Void, Void> {
         setContentView(R.layout.search);
         final EditText symptom_name;
 //        disease_name = findViewById(R.id.disease);
-        symptom_name = findViewById(R.id.symptom);
+        symptom_name = findViewById(R.id.alias);
 //        treatment_name = findViewById(R.id.treatment);
 
         sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -151,37 +126,4 @@ public class Searcher extends AsyncTask<Void, Void, Void> {
             }
         });
     }
-
-//    public void on_click_graph_query(View v) throws  JSONException{
-//        disease1 = disease_name.getText().toString();
-//        symptom1 = symptom_name.getText().toString();
-//        treatment1 = treatment_name.getText().toString();
-//        JSONObject value = new JSONObject();
-//        if (disease1 != ""){
-//            value.put("disease", disease1);
-//        }
-//        else if (symptom1 != ""){
-//            value.put("symptom", symptom1);
-//        }
-//        else if (treatment1 != ""){
-//            value.put("treatment", treatment1);
-//        }
-//        HttpHandler httpHandler = new HttpHandler(value, new Handler(Looper.getMainLooper()){
-//            @Override
-//            public void handleMessage(Message msg) {
-//                try {
-//                    JSONObject data = new JSONObject(msg.getData().getString("response"));
-//                    JSONArray ja = (JSONArray) data.get("symptoms");
-//                    for (int i=0;i < ja.length();i++){
-//                        String innerObj = ja.getString(i);
-//                        System.out.println(innerObj);
-//                    }
-//                }
-//                catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        httpHandler.doPost();
-//    }
 }

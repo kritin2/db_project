@@ -6,23 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:id="@+id/username_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Name"
+        android:autofillHints=""
+        android:background="@drawable/roundededittext"
+        android:hint="Username"
+        android:textColor="#CCCCCC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.45" />
 
-    <TextView
+    <EditText
         android:id="@+id/password_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="PassWord"
+        android:layout_marginTop="21dp"
+        android:autofillHints=""
+        android:background="@drawable/roundededittext"
+        android:hint="PassWord"
+        android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_login" />
@@ -34,8 +40,32 @@
         android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_login"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.378" />
+
+    <Switch
+        android:id="@+id/doctor_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="doctor"
+        app:layout_constraintBottom_toTopOf="@+id/login_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_login"
+        app:layout_constraintVertical_bias="0.597" />
+
+    <Switch
+        android:id="@+id/patient_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="patient"
+        app:layout_constraintBottom_toTopOf="@+id/login_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_login"
+        app:layout_constraintVertical_bias="0.597" />
 </androidx.constraintlayout.widget.ConstraintLayout>
