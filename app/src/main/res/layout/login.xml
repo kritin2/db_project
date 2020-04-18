@@ -13,7 +13,7 @@
         android:autofillHints=""
         android:background="@drawable/roundededittext"
         android:hint="Username"
-        android:textColor="#CCCCCC"
+        android:textColor="#111111"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:autofillHints=""
         android:background="@drawable/roundededittext"
         android:hint="PassWord"
-        android:textColor="#CCCCCC"
+        android:textColor="#111111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_login" />
@@ -45,27 +45,4 @@
         app:layout_constraintTop_toBottomOf="@+id/password_login"
         app:layout_constraintVertical_bias="0.378" />
 
-    <Switch
-        android:id="@+id/doctor_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="doctor"
-        app:layout_constraintBottom_toTopOf="@+id/login_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_login"
-        app:layout_constraintVertical_bias="0.597" />
-
-    <Switch
-        android:id="@+id/patient_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="patient"
-        app:layout_constraintBottom_toTopOf="@+id/login_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_login"
-        app:layout_constraintVertical_bias="0.597" />
 </androidx.constraintlayout.widget.ConstraintLayout>

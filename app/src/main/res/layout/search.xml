@@ -12,28 +12,30 @@ android:focusableInTouchMode="true">
 
 
 
-    <EditText
-        android:id="@+id/alias"
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/restaurant"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundededittext"
-        android:hint="@string/Symptom"
-        android:inputType="text"
-        android:textColor="#CCCCCC"
-        android:autofillHints="" />
+        android:background="@drawable/buttonback"
+        android:text="restaurant" />
+    <Button
+        android:id="@+id/shops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonback"
+        android:text="shops" />
+    <Button
+        android:id="@+id/clinic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonback"
+        android:text="clinic" />
 
-<Button
-    android:id="@+id/graph_query"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/buttonback"
-    android:text="Search"
-    android:onClick="on_click_graph_query"
-    />
+    <ListView
+        android:id="@+id/list_view"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
 
-<ListView
-    android:id="@+id/list_view"
-    style="@style/Widget.AppCompat.ListView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"></ListView>
 </LinearLayout>

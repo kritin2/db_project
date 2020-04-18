@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundededittext"
-        android:textColor="#CCCCCC"
+        android:textColor="#111111"
         android:autofillHints=""
         android:hint="Username"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,27 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.217" />
 
-    <Switch
-        android:id="@+id/select_doctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="doctor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Switch
-        android:id="@+id/select_patient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="patient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_doctor" />
 
     <Button
         android:id="@+id/sign_up"
@@ -49,10 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="Sign Up"
+        app:layout_constraintBottom_toBottomOf="@+id/login_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_patient" />
+        />
 
     <EditText
         android:id="@+id/password"
@@ -62,7 +41,7 @@
         android:autofillHints=""
         android:background="@drawable/roundededittext"
         android:hint="Password"
-        android:textColor="#CCCCCC"
+        android:textColor="#111111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,25 +51,12 @@
         android:id="@+id/login_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="144dp"
         android:text="LOGIN"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_patient" />
-
-    <EditText
-        android:id="@+id/category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundededittext"
-        android:textColor="#CCCCCC"
-        android:autofillHints=""
-        android:hint="Category"
-        android:layout_marginTop="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintHorizontal_bias="0.823"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

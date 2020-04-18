@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +39,7 @@ public class Searcher extends AsyncTask<Void, Void, Void> {
 
 
         try {
-            URL url = new URL("http://192.168.0.5:8000");
+            URL url = new URL("http://192.168.43.142:8000");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
@@ -108,22 +109,22 @@ public class Searcher extends AsyncTask<Void, Void, Void> {
         setContentView(R.layout.search);
         final EditText symptom_name;
 //        disease_name = findViewById(R.id.disease);
-        symptom_name = findViewById(R.id.alias);
+//        symptom_name = findViewById(R.id.alias);
 //        treatment_name = findViewById(R.id.treatment);
 
         sharedPref = getPreferences(Context.MODE_PRIVATE);
 //        disease_name.setText(sharedPref.getString("disease", disease1));
-        symptom_name.setText(sharedPref.getString("symptom", symptom1));
+//        symptom_name.setText(sharedPref.getString("symptom", symptom1));
 //        treatment_name.setText(sharedPref.getString("treatment", treatment1));
-        final Button button = findViewById(R.id.graph_query);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String all_symptoms = symptom_name.getText().toString();
+//        final Button button = findViewById(R.id.graph_query);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final String all_symptoms = symptom_name.getText().toString();
                 //email.setText("abc");
-                new Searcher(all_symptoms).execute();
+//                new Searcher(all_symptoms).execute();
 
-            }
-        });
+//            }
+//        });
     }
 }

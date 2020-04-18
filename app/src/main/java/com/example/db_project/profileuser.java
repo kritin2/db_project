@@ -23,17 +23,16 @@ import java.io.DataInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Signup extends AppCompatActivity {
-//
-    public class Signingup extends AsyncTask<Void, Void, Void> {
+public class profileuser extends AppCompatActivity {
+    //
+    String username = null;
+    String name_of_person = null;
+    public class helperclass extends AsyncTask<Void, Void, Void> {
 
-        public Signingup(String a, String b){
-            user_name = a;
-            passwd = b;
+        public helperclass(String a){
+            name_of_person = a;
         }
-        String user_name = null;
-        String passwd = null;
-        String type_user = null;
+
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -41,15 +40,15 @@ public class Signup extends AppCompatActivity {
 
 
             try {
-                URL url = new URL("http://192.168.43.142:8000/users/register");
+                URL url = new URL("http://192.168.43.142:8000/users/update");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
                 conn.setDoInput(true);
                 conn.setRequestProperty("Content-Type", "application/json");
                 JSONObject data = new JSONObject();
-                data.put("username", user_name);
-                data.put("passwd", passwd);
+                data.put("username", username);
+                data.put("name", name_of_person);
 //                data.put("symptom", name);
                 Log.i("JSON", data.toString());
                 conn.getOutputStream().write(data.toString().getBytes());
@@ -71,14 +70,11 @@ public class Signup extends AppCompatActivity {
                 conn.disconnect();
                 System.out.println(response.toString());
                 JSONObject type_person = (new JSONObject(response.toString()));
-                type_user = type_person.getString("type");
                 String val = type_person.getString("status");
-                System.out.println(type_user);
                 System.out.println(val);
 //                type_user = type_person.getString(0);
 
                 if (val.equals("success")){
-                    System.out.println(type_user);
                     System.out.println(val);
                 }
                 System.out.println(val);
@@ -91,12 +87,17 @@ public class Signup extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (type_user.equals("user")){
+            final EditText name;
+            name = findViewById(R.id.username_login);
+            name.setText(name_of_person);
+            String he = "completed saving";
+            Toast.makeText(profileuser.this,he,Toast.LENGTH_SHORT).show() ;
+//            if (type_user.equals("user")){
 //                System.out.println("hgjhbkj");
-                Intent myIntent = new Intent(Signup.this, usermenu.class);
-                myIntent.putExtra("username", user_name);
-                startActivity(myIntent);
-            }
+//            Intent myIntent = new Intent(Signup.this, usermenu.class);
+//            myIntent.putExtra("username", user_name);
+//            startActivity(myIntent);
+//            }
 //            else {
 //                Intent myIntent = new Intent(Signup.this, employerActivity.class);
 //            }
@@ -106,33 +107,25 @@ public class Signup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        final EditText uname;
-        final EditText passwd;
-        final EditText category;
-        final Switch doc ;
-        final Switch pat;
-        uname = findViewById(R.id.username);
-        passwd = findViewById(R.id.password);
-        final Button button_signup = findViewById(R.id.sign_up);
-        button_signup.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.user_profile);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        final EditText name;
+        name = findViewById(R.id.username_login);
+        final Button save_button = findViewById(R.id.button5);
+        final Button back_button = findViewById(R.id.button6);
+        save_button.setOnClickListener(new android.widget.Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String un = uname.getText().toString();
-                final String pw = passwd.getText().toString();
-                new Signingup(un, pw).execute();
-//                System.out.println(doc_check);
-//                final String all_symptoms = symptom_name.getText().toString();
-//                //email.setText("abc");
-//                new Searcher(all_symptoms).execute();
-
+                final String name_person = name.getText().toString();
+                new helperclass(name_person).execute();
             }
         });
-        final Button button_login = findViewById(R.id.login_1);
-        button_login.setOnClickListener(new android.widget.Button.OnClickListener() {
+        back_button.setOnClickListener(new android.widget.Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(Signup.this, login.class);
+                Intent myIntent = new Intent(profileuser.this, usermenu.class);
+                myIntent.putExtra("username", username);
                 startActivity(myIntent);
 //                final String all_symptoms = symptom_name.getText().toString();
 //                //email.setText("abc");

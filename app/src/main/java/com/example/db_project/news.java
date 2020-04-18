@@ -1,5 +1,4 @@
 package com.example.db_project;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,39 +17,33 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class login extends AppCompatActivity {
+public class news extends AppCompatActivity {
     //
-    public class logingin extends AsyncTask<Void, Void, Void> {
+    public class helpernews extends AsyncTask<Void, Void, Void> {
+//        String category;
+        JSONArray res;
+        String[] usernames = new String[0];
 
-        public logingin(String a, String b){
-            user_name = a;
-            passwd = b;
-        }
-        String user_name = null;
-        String passwd = null;
-        String type_user = null;
         @Override
         protected Void doInBackground(Void... voids) {
-
-            System.out.println("GfG2");
-
-
+            URL url = null;
             try {
-                URL url = new URL("http://192.168.43.142:8000/users/signin");
+
+                url = new URL("http://192.168.43.142:8000/users/getstorenews");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
                 conn.setDoInput(true);
                 conn.setRequestProperty("Content-Type", "application/json");
                 JSONObject data = new JSONObject();
-                data.put("username", user_name);
-                data.put("passwd", passwd);
 //                data.put("symptom", name);
                 Log.i("JSON", data.toString());
                 conn.getOutputStream().write(data.toString().getBytes());
@@ -70,58 +63,62 @@ public class login extends AppCompatActivity {
 
                 conn.disconnect();
                 System.out.println(response.toString());
-                JSONObject type_person = (new JSONObject(response.toString()));
-                type_user = type_person.getString("type");
-                String val = type_person.getString("status");
-                System.out.println(type_user);
-                System.out.println(val);
-//                type_user = type_person.getString(0);
-
-                if (val == "success"){
-                    System.out.println("hello");
-                    System.out.println(val);
+                res= (JSONArray) (new JSONObject(response.toString())).get("info");
+                usernames = new String[res.length()];
+                for (int i=0;i<res.length();i++){
+                    JSONObject row = res.getJSONObject(i);
+                    usernames[i] = (String) row.get("news");
                 }
-                if (val == "success"){
-                    System.out.println(val);
+                for (int i=0;i<res.length();i++){
+                    System.out.println(usernames[i]);
                 }
 
+//                System.out.println(usernames[0]);
+                //String x = usernames.get(2);
+                //Integer y = res.length();
+                //Integer xx =1;
+            } catch (IOException | JSONException e) {
 
-            }catch (Exception e) {
-                e.printStackTrace();
             }
+
             return null;
         }
+
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (type_user.equals("user")){
-                Intent myIntent = new Intent(login.this, usermenu.class);
-                myIntent.putExtra("username", user_name);
-                startActivity(myIntent);
-            }
+            String he = "Completed Search";
+            Toast.makeText(news.this,he,Toast.LENGTH_SHORT).show() ;
+//
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    R.layout.mylistviewlayout, usernames);
+            final ListView listView = (ListView) findViewById(R.id.news_list);
+            listView.setAdapter(adapter);
 
+//            listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    String item = (String) listView.getItemAtPosition(position);
+//                    //selected username is item
+//                    Intent myIntent = new Intent(displayshops.this, storeinfo.class);
+//                    myIntent.putExtra("username", item); //Optional parameters
+//                    startActivity(myIntent);
+//                }
+//            });
         }
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-        final EditText uname;
-        final EditText passwd;
-        final Switch doc ;
-        final Switch pat;
-        uname = findViewById(R.id.username_login);
-        passwd = findViewById(R.id.password_login);
-        final Button button_signup = findViewById(R.id.login_2);
-        button_signup.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.news_layout);
+        final Button button_news = findViewById(R.id.news);
+        button_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String un = uname.getText().toString();
-                final String pw = passwd.getText().toString();
-                new logingin(un, pw).execute();
-
+                new helpernews().execute();
             }
         });
-
     }
 }
